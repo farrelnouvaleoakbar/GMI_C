@@ -1,0 +1,102 @@
+@import "tailwindcss";
+:root {
+  --background: #f3f6f5;
+  --foreground: #142e36;
+  --card: #ffffff;
+  --card-foreground: #142e36;
+  --primary: #087d92;
+  --primary-foreground: #fff;
+  --muted: #e9efee;
+  --muted-foreground: #60757a;
+  --border: #dce6e3;
+  --input: #cbd9d6;
+  --ring: #1497a8;
+  --destructive: #b93838;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: radial-gradient(ellipse 75% 35% at 82% 0%, rgba(8, 125, 146, 0.055), transparent 72%), var(--background);
+  color: var(--foreground);
+  font-family: "Aptos", "Segoe UI", Arial, Helvetica, sans-serif;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button:not(:disabled),
+select {
+  cursor: pointer;
+}
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--input);
+  border-radius: 8px;
+  background: white;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+}
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: #405b60;
+}
+th {
+  padding: 14px 18px;
+  text-align: left;
+  color: #6a7d87;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  background: #f9fbfc;
+  white-space: nowrap;
+}
+td {
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+::selection {
+  background: #c6ece9;
+}
