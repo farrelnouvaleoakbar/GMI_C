@@ -1,4 +1,4 @@
-# Niaga — aplikasi manajemen bisnis
+# Global Medika Indonesia — aplikasi manajemen bisnis
 
 Aplikasi bisnis berbahasa Indonesia untuk katalog, pelanggan, kalkulasi harga, draf, invoice PDF privat, pembayaran manual, dashboard, pengaturan, staf, dan audit. Next.js App Router + React + TypeScript, Tailwind CSS v4, komponen shadcn/ui berbasis Radix, Decimal.js, pdf-lib, Supabase PostgreSQL/Auth/Storage. Hosting frontend dan API di Vercel. Tidak memerlukan cloud lain, SMTP eksternal, gateway pembayaran, atau Redis.
 
@@ -68,7 +68,7 @@ Untuk membuat ulang seed GMI, jalankan `python3 scripts/import-gmi-catalog.py '/
 | `NEXT_PUBLIC_SUPABASE_URL` | URL proyek Supabase | Lokal dan Vercel |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon key untuk session Auth/RLS | Lokal dan Vercel; boleh publik |
 | `SUPABASE_SERVICE_ROLE_KEY` | Buat akun staf dan akses Storage setelah otorisasi | **Server saja**, jangan pakai awalan `NEXT_PUBLIC_` |
-| `NEXT_PUBLIC_APP_URL` | Origin aplikasi, mis. `https://niaga.example.com` | Lokal dan Vercel |
+| `NEXT_PUBLIC_APP_URL` | Origin aplikasi, mis. `https://gmi.example.com` | Lokal dan Vercel |
 | `TEST_DATABASE_URL` | Koneksi PostgreSQL langsung untuk tes konkurensi opsional | Lokal/CI, hanya database disposable |
 | `ACK_DISPOSABLE_DATABASE` | Isi `yes` untuk menjalankan tes konkurensi | Lokal/CI, tidak perlu di Vercel |
 

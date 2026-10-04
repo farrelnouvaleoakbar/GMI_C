@@ -24,7 +24,7 @@ const line: CalculatedLine = {
 };
 const calculation: Calculation = {
   company: {
-    company_name: "PT Niaga Indonesia",
+    company_name: "Global Medika Indonesia",
     address: "Jl. Merdeka 1, Jakarta",
     contact: "finance@example.invalid",
     logo_path: null,
@@ -93,7 +93,7 @@ it("PDF menampilkan merek dan tagihan tanpa modal atau profit internal", async (
   expect(pdf.getPageCount()).toBe(1);
   expect(pdf.getTitle()).toBe("Invoice INV/2026/000001");
   const text = await renderedText(pdf);
-  expect(text).toContain("PT Niaga Indonesia");
+  expect(text).toContain("Global Medika Indonesia");
   expect(text).toContain("Pelanggan Indonesia");
   expect(text).toContain("Rp 172.050,00");
   for (const secret of [

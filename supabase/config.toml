@@ -1,4 +1,4 @@
-project_id = "niaga-office"
+project_id = "gmi-business-desk"
 [api]
 enabled = true
 schemas = ["public", "storage", "graphql_public"]

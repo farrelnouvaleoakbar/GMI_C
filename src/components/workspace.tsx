@@ -268,7 +268,7 @@ export function Workspace({
           {section === "audit" && <AuditView />}
           {section === "account" && <AccountView notify={notify} />}
           <footer className="mt-12 flex justify-between border-t border-border pt-5 text-[10px] text-muted-foreground">
-            <span>Niaga • Ruang kerja bisnis</span>
+            <span>GMI • Ruang kerja bisnis</span>
             <span>Semua nilai dalam Rupiah</span>
           </footer>
         </main>

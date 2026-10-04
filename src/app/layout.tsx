@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Niaga — Manajemen Bisnis",
+  title: "Global Medika Indonesia — Manajemen Bisnis",
   description:
     "Harga, pelanggan, invoice, dan pembayaran dalam satu ruang kerja.",
 };
