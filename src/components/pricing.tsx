@@ -134,7 +134,6 @@ export function PricingView({ notify }: { notify: Notify }) {
             },
             target_percent: s.data[0].profit_percent,
             marketing_percent: s.data[0].marketing_percent,
-            operations: categoryRows.filter((x) => !x.archived).map((x) => ({ name: x.name, percent: "0" })),
             lines: [defaultLine(s.data[0])],
           }));
         }
@@ -365,9 +364,10 @@ export function PricingView({ notify }: { notify: Notify }) {
         </Card>
         <Card className="p-6">
           <h2 className="mb-4 font-semibold">Biaya operasional dan pajak</h2>
-          <div className="mb-5 grid gap-4 sm:grid-cols-2">
+          <div className="mb-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Field label="Target keuntungan (%)" id="target-percent"><Input id="target-percent" type="number" min="0" max="1000" step="0.01" value={inputs.target_percent ?? inputs.lines[0]?.profit_percent ?? "20"} onChange={(e) => change({ ...inputs, target_percent: e.target.value })} /></Field>
             <Field label="Biaya pemasaran (%)" id="marketing-percent"><Input id="marketing-percent" type="number" min="0" max="100" step="0.01" value={inputs.marketing_percent ?? inputs.lines[0]?.marketing_percent ?? "5"} onChange={(e) => change({ ...inputs, marketing_percent: e.target.value })} /></Field>
+            {inputs.operations == null && <Field label="Biaya operasional (%)" id="operational-percent"><Input id="operational-percent" type="number" min="0" max="100" step="0.01" value={inputs.lines[0]?.operational_percent ?? "0"} onChange={(e) => change({ ...inputs, lines: inputs.lines.map((line) => ({ ...line, operational_percent: e.target.value })) })} /></Field>}
           </div>
           <div className="space-y-3">
             {(inputs.operations ?? []).map((op, i) => (
@@ -376,13 +376,15 @@ export function PricingView({ notify }: { notify: Notify }) {
                 <Field label={`Persentase ${op.name}`} id={`operation-${i}`}>
                   <Input id={`operation-${i}`} type="number" min="0" max="100" step="0.01" value={op.percent} onChange={(e) => change({ ...inputs, operations: inputs.operations?.map((x, n) => n === i ? { ...x, percent: e.target.value } : x) })} />
                 </Field>
-                <Button type="button" variant="ghost" aria-label={`Hapus ${op.name}`} onClick={() => change({ ...inputs, operations: inputs.operations?.filter((_, n) => n !== i) })}><Trash2 size={16} /></Button>
+                <Button type="button" variant="ghost" aria-label={`Hapus ${op.name}`} onClick={() => { const remaining = inputs.operations?.filter((_, n) => n !== i) ?? []; change({ ...inputs, operations: remaining.length ? remaining : undefined }); }}><Trash2 size={16} /></Button>
               </div>
             ))}
             <div className="flex flex-wrap gap-2">
               {categories.filter((x) => !x.archived && !(inputs.operations ?? []).some((op) => op.name === x.name)).map((x) => <Button key={x.id} type="button" size="sm" variant="outline" onClick={() => change({ ...inputs, operations: [...(inputs.operations ?? []), { name: x.name, percent: "0" }] })}><Plus size={14} />{x.name}</Button>)}
             </div>
+            {inputs.operations != null && <Button type="button" size="sm" variant="outline" onClick={() => change({ ...inputs, operations: undefined })}>Gunakan tarif operasional umum</Button>}
           </div>
+          <p className="mt-3 text-xs text-muted-foreground">Persentase operasional umum memakai default pengaturan. Jika kategori dipilih, persentase kategori menjadi pengganti biaya umum dan dihitung satu per satu.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={taxInput.enabled} onChange={(e) => change({ ...inputs, tax: { ...taxInput, enabled: e.target.checked } })} />Aktifkan pajak</label>
             {taxInput.enabled && <>
@@ -614,6 +616,7 @@ export function PricingView({ notify }: { notify: Notify }) {
                   </tbody>
                 </table>
               </div>
+              <p className="px-6 pb-4 text-xs text-muted-foreground">Penyesuaian pembulatan pada baris terakhir memastikan jumlah profit per baris sama dengan estimasi profit transaksi.</p>
               <div className="grid gap-3 bg-muted/40 p-6 sm:grid-cols-4">
                 {[
                   { label: "Total modal", value: c.purchase },

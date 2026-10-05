@@ -1,6 +1,7 @@
 node_modules/
 .next/
 .env*
+motion
 !.env.example
 coverage/
 *.tsbuildinfo

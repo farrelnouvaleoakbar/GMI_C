@@ -66,6 +66,7 @@ beforeAll(async () => {
     "202610040003_decimal_views.sql",
     "202610040004_calculator_options.sql",
     "202610040005_gmi_catalog.sql",
+    "202610050001_calculator_profit_reconciliation.sql",
   ])
     await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8"));
   for (const [name, id] of Object.entries(ids).slice(0, 5)) {
